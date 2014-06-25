@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  	<style>
+    	#lcontainer {
+    		position: relative;
+			width:46px;
+			top: 65px;
+			height:144px;
+			left: 460px;
+			overflow: hidden;
+		}
+    	#l {
+    		position: absolute;
+			width: 2925px;
+			height: 144px;
+			left: 400px;
+			background: url('l.png') 2925px 144px;
+		}
+
+		#ballWrapper1 {
+		    width: 35px;
+		    height: 100px;
+		    position: absolute;
+		    left: 350px;
+		    top: 175px;
+		    margin: -37px 0 0 -18px;
+		}
+		#ball1 {
+		    position: absolute;
+		    width: 35px;
+    		height: 35px;
+    		border-radius: 18px;
+    		background: yellow;
+    		box-shadow: inset 0 -5px 15px rgba(255,255,255,0.4), 
+                inset -2px -1px 40px rgba(0,0,0,0.4), 
+                0 0 1px #000;   
+		}
+		#ballShadow1 {
+		    width: 20px;
+		    height: 3px;
+		    position: absolute;
+		    z-index: 0;
+		    bottom: 10px;
+		    left: 36%;
+		    background: rgba(20, 20, 20, .1);
+		    box-shadow: 0px 0 5px 8px rgba(20,20,20,.1);
+		    border-radius: 8px / 10px; 
+		}
+
+		#ballWrapper2 {
+		    width: 300px;
+		    height: 165px;
+		    position: absolute;
+		    left: 15px;
+		    top: 125px;
+		    margin: -37px 0 0 -18px;
+		}
+		#ball2 {
+		    position: absolute;
+		    width: 35px;
+    		height: 35px;
+    		border-radius: 18px;
+    		background: red;
+    		box-shadow: inset 0 -5px 15px rgba(255,255,255,0.4), 
+                inset -2px -1px 40px rgba(0,0,0,0.4), 
+                0 0 1px #000;   
+		}
+		#ballShadow2 {
+		    width: 20px;
+		    height: 3px;
+		    position: absolute;
+		    z-index: 0;
+		    bottom: 0;
+		    left: 15px;
+		    bottom: 20%;
+		    left: 8px;
+		    background: rgba(20, 20, 20, .1);
+		    box-shadow: 0px 0 5px 8px rgba(20,20,20,.1);
+		    border-radius: 8px / 10px; 
+		}
+
+		#econtainer {
+			position: absolute;
+			top: 20px;
+			left: 530px;
+		}
+
+		#gcontainer {
+			position: absolute;
+			top: 20px;
+			left: 400px;
+		}
+
+		#Gcontainer {
+			opacity: 0;
+			position: absolute;
+			top: 25px;
+			left: 180px;
+		}
+	</style>
+    
+	<script type="text/javascript" src="web-animations.js"></script>  
+    <script>
+
+		function moveL() {
+
+        	// animating the first o
+			var step = 45;
+			var imageWidth = 2925;
+			var durLoad = (imageWidth / step)-1;
+        	var iters = Infinity;
+        	var elem2 = document.querySelector('#ball1');
+        	var anim2 = new Animation(elem2, [
+        		{top: '0px', offset: 0}, 
+        		{top: '44px', height: '35px', offset: 0.5}, 
+        		{top: '55px', height: '30px', offset: 0.55}, 
+        		{top: '45px', height: '35px', offset: 0.65}, 
+        		{top: '10px', offset: 0.9}, 
+        		{top: '0px', offset: 1}], 
+        		{duration: 1000, iterations: iters, fill: 'forwards'});
+        	var elem3 = document.querySelector('#ballShadow1');
+        	var anim3 = new Animation(elem3, [
+        		{bottom: '15px', width: '20px', height: '3px', left: '8px', offset: 0}, 
+        		{bottom: '20px', width: '9px', height: '2px',  left: '14px', offset: 0.5}, 
+        		{bottom: '15px', width: '20px', height: '3px', left: '8px', offset: 1}],
+        		{duration: 1000, iterations: iters, fill: 'forwards'});
+
+        	// animate the second o
+        	var elem5 = document.querySelector('#ballShadow2');
+        	var anim5 = new Animation(elem5, [
+        		{transform: 'translateX(0px)', offset: 0}, 
+        		{transform: 'translateX(180px)', offset: 0.35}, 
+        		{transform: 'translateX(220px)', offset: 0.65}, 
+        		{transform: 'translateX(240px)', offset: 0.67}, 
+        		{transform: 'translateX(270px)', offset: 1}], 
+        		{duration: 1000, iterations: 1, fill: 'forwards'});
+			var elem4 = document.querySelector('#ball2');
+        	var anim4 = new Animation(elem4, [
+        		{transform: 'translate(0px, 40px)', offset: 0}, 
+        		{transform: 'translate(180px, 100px)', offset: 0.35}, 
+        		{transform: 'translate(220px, 70px)', offset: 0.65}, 
+        		{transform: 'translate(240px, 70px)', offset: 0.67}, 
+        		{transform: 'translate(270px, 100px)', offset: 1}], 
+        		{duration: 1000, iterations: 1, fill: 'forwards'});
+
+			//  the l
+			var elem1 = document.querySelector('#l');
+        	var anim1 = new Animation(elem1, [{left: '0px'}, {left: '-2880px'}], {duration: (durLoad) * 100, easing: 'steps(' + (durLoad) + ', ' + 'end' + ')', fill: 'forwards'});
+
+        	// animate the G
+        	var elem6 = document.querySelector('#Gcontainer');
+        	var anim6 = new Animation(elem6, [
+        		{opacity: '0', transform: 'translateX(-2000px)', offset: 0},
+        		{opacity: '1', transform: 'translateX(30px)', offset: 0.6},
+        		{transform: 'translateX(-10px)', offset: 0.8},
+        		{opacity: '1', transform: 'translateX(0px)', offset: 1}], 
+        		{duration: 1000, fill: 'forwards'});
+
+        	// animate the g, e
+        	var elem7 = document.querySelector('#econtainer');
+        	var elem8 = document.querySelector('#gcontainer');
+        	var wobble = [
+        		{transform: 'translateX(0%)', offset: 0}, 
+        		{transform: 'translateX(-25%) rotate(-5deg)', offset: 0.15}, 
+        		{transform: 'translateX(20%) rotate(3deg)', offset: 0.30}, 
+        		{transform: 'translateX(-15%) rotate(-3deg)', offset: 0.45}, 
+        		{transform: 'translateX(10%) rotate(2deg)', offset: 0.6}, 
+        		{transform: 'translateX(-5%) rotate(-1deg)', offset: 0.75}, 
+        		{transform: 'translateX(0%)', offset: 1}];
+        	var anim7 = new Animation(elem7, wobble, 
+        		{duration: 1000, iterations: Infinity});
+        	var anim8 = new Animation(elem8, wobble, 
+        		{duration: 1000, iterations: Infinity});
+
+        	// play the entire animation
+        	var animationSeq = new AnimationSequence([new AnimationGroup([anim4, anim5]), anim6]); // order them so that the ball bounces first and then the G slides in
+        	var animationGroup = new AnimationGroup([anim1, anim2, anim3, animationSeq, anim7, anim8]); // play the entire animation in parallel
+        	document.timeline.play(animationGroup);
+		}
+    </script>
+
+  </head>
+
+  <body onclick="moveL()">
+
+	<div id ="Gcontainer">
+  		<p style="font-size:100px; color: blue">G</p>
+	</div>
+
+	<div id="ballWrapper2">
+	    <div id="ball2">
+	    </div>
+	    <div id="ballShadow2">
+	    </div>         
+	</div>
+
+	<div id="ballWrapper1">
+	    <div id="ball1">
+	    </div>
+	    <div id="ballShadow1">
+	    </div>         
+	</div>
+
+	</canvas>
+
+	<div id ="gcontainer">
+  		<p style="font-size:100px; color: blue">g</p>
+	</div>
+
+  	<div id = "lcontainer">
+  		<canvas id = "l">
+  		</canvas>
+  	</div>
+
+  	<div id ="econtainer">
+  		<p style="font-size:100px; color: red">e</p>
+	</div>
+	<br>
+  </body>
+
+</html>
